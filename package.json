@@ -77,7 +77,7 @@
     "concurrently": "8.2.2",
     "css-loader": "6.8.1",
     "eslint": "8.52.0",
-    "fork-ts-checker-webpack-plugin": "9.0.0",
+    "fork-ts-checker-webpack-plugin": "9.0.1",
     "glob": "10.3.10",
     "mocha": "10.2.0",
     "style-loader": "3.3.3",
