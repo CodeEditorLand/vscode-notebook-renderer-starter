@@ -30,7 +30,7 @@ export function render({
 	code.textContent = `mime type: ${mimeType}\n\n${JSON.stringify(
 		data,
 		null,
-		2,
+		2
 	)}`;
 	pre.appendChild(code);
 	container.appendChild(pre);

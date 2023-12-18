@@ -66,7 +66,7 @@ const getPublicPath = () => {
 		document.currentScript as HTMLScriptElement
 	).src.replace(/[^/]+$/, "");
 	return new URL(
-		currentDirname + __webpack_relative_entrypoint_to_root__,
+		currentDirname + __webpack_relative_entrypoint_to_root__
 	).toString();
 };
 
