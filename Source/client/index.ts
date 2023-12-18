@@ -2,10 +2,10 @@
  * Copyright (C) Microsoft Corporation. All rights reserved.
  *--------------------------------------------------------*/
 
-import { rendererType, renderCallback } from "../common/constants";
-import { render } from "./render";
 import errorOverlay from "vscode-notebook-error-overlay";
 import { NotebookOutputEventParams } from "vscode-notebook-renderer";
+import { renderCallback, rendererType } from "../common/constants";
+import { render } from "./render";
 
 // ----------------------------------------------------------------------------
 // This is the entrypoint to the notebook renderer's webview client-side code.
@@ -66,7 +66,7 @@ const getPublicPath = () => {
 		document.currentScript as HTMLScriptElement
 	).src.replace(/[^/]+$/, "");
 	return new URL(
-		currentDirname + __webpack_relative_entrypoint_to_root__
+		currentDirname + __webpack_relative_entrypoint_to_root__,
 	).toString();
 };
 

@@ -1,5 +1,5 @@
-import * as vscode from "vscode";
 import * as path from "path";
+import * as vscode from "vscode";
 import { rendererType } from "../common/constants";
 
 export class SampleRenderer implements vscode.NotebookOutputRenderer {
@@ -19,14 +19,14 @@ export class SampleRenderer implements vscode.NotebookOutputRenderer {
 		) {
 			this.preloads.push(
 				vscode.Uri.parse(
-					`http://localhost:${webpackDevServerPort}/index.js`
-				)
+					`http://localhost:${webpackDevServerPort}/index.js`,
+				),
 			);
 		} else {
 			this.preloads.push(
 				vscode.Uri.file(
-					path.join(context.extensionPath, "out/client/index.js")
-				)
+					path.join(context.extensionPath, "out/client/index.js"),
+				),
 			);
 		}
 	}
@@ -36,7 +36,7 @@ export class SampleRenderer implements vscode.NotebookOutputRenderer {
 	 */
 	public render(
 		document: vscode.NotebookDocument,
-		{ output, mimeType }: vscode.NotebookRenderRequest
+		{ output, mimeType }: vscode.NotebookRenderRequest,
 	): string {
 		const renderData = output.data[mimeType];
 		this.ensureDevTools(document);
@@ -58,7 +58,7 @@ export class SampleRenderer implements vscode.NotebookOutputRenderer {
 	 */
 	public resolveNotebook(
 		document: vscode.NotebookDocument,
-		communication: vscode.NotebookCommunication
+		communication: vscode.NotebookCommunication,
 	) {
 		// communication.onDidReceiveMessage is called whenever `postMessage` on
 		// the notebook API is called in the webview.
@@ -78,7 +78,7 @@ export class SampleRenderer implements vscode.NotebookOutputRenderer {
 			!this.hasOpenedDevTools.has(document)
 		) {
 			await vscode.commands.executeCommand(
-				"workbench.action.webview.openDeveloperTools"
+				"workbench.action.webview.openDeveloperTools",
 			);
 			this.hasOpenedDevTools.add(document);
 		}

@@ -7,7 +7,7 @@ import * as vscode from "vscode";
 export class SampleProvider
 	implements vscode.NotebookContentProvider, vscode.NotebookKernel
 {
-	label: string = "CPU Profile Notebook";
+	label = "CPU Profile Notebook";
 
 	public readonly onDidChangeNotebook =
 		new vscode.EventEmitter<vscode.NotebookDocumentEditEvent>().event;
@@ -17,7 +17,7 @@ export class SampleProvider
 		executeCell: (document, cell) => this.executeCell(document, cell),
 		executeAllCells: async (document) => {
 			await Promise.all(
-				document.cells.map((cell) => this.executeCell(document, cell))
+				document.cells.map((cell) => this.executeCell(document, cell)),
 			);
 		},
 	};
@@ -60,7 +60,7 @@ export class SampleProvider
 	 */
 	public async executeAllCells(
 		document: vscode.NotebookDocument,
-		_token: vscode.CancellationToken
+		_token: vscode.CancellationToken,
 	): Promise<void> {
 		for (let i = 0; i < document.cells.length; i++) {
 			await this.executeCell(document, document.cells[i]);
@@ -72,7 +72,7 @@ export class SampleProvider
 	 */
 	public async executeCell(
 		_document: vscode.NotebookDocument,
-		cell: vscode.NotebookCell | undefined
+		cell: vscode.NotebookCell | undefined,
 	): Promise<void> {
 		if (cell?.language !== "json") {
 			return;
