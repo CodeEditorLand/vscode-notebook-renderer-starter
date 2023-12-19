@@ -152,7 +152,7 @@ declare module "vscode" {
 		/**
 		 * Returns an array of current sessions.
 		 */
-		getSessions(): Thenable<ReadonlyArray<AuthenticationSession2>>;
+		getSessions(): Thenable<readonly AuthenticationSession2[]>;
 
 		/**
 		 * Prompts a user to login.
@@ -189,7 +189,7 @@ declare module "vscode" {
 		 * The ids of the currently registered authentication providers.
 		 * @returns An array of the ids of authentication providers that are currently registered.
 		 */
-		export function getProviderIds(): Thenable<ReadonlyArray<string>>;
+		export function getProviderIds(): Thenable<readonly string[]>;
 
 		/**
 		 * An array of the ids of authentication providers that are currently registered.
@@ -254,7 +254,7 @@ declare module "vscode" {
 		export function getSessions(
 			providerId: string,
 			scopes: string[],
-		): Thenable<ReadonlyArray<AuthenticationSession>>;
+		): Thenable<readonly AuthenticationSession[]>;
 
 		/**
 		 * @deprecated
@@ -1778,7 +1778,7 @@ declare module "vscode" {
 		 * The affected document.
 		 */
 		readonly document: NotebookDocument;
-		readonly changes: ReadonlyArray<NotebookCellsChangeData>;
+		readonly changes: readonly NotebookCellsChangeData[];
 	}
 
 	export interface NotebookCellMoveEvent {
@@ -1983,7 +1983,7 @@ declare module "vscode" {
 		/**
 		 * All currently known notebook documents.
 		 */
-		export const notebookDocuments: ReadonlyArray<NotebookDocument>;
+		export const notebookDocuments: readonly NotebookDocument[];
 
 		export let visibleNotebookEditors: NotebookEditor[];
 		export const onDidChangeVisibleNotebookEditors: Event<NotebookEditor[]>;
