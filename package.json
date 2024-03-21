@@ -1,38 +1,7 @@
 {
-	"name": "vscode-notebook-renderer-starter",
-	"displayName": "vscode-notebook-renderer-starter",
-	"version": "0.0.1",
-	"private": false,
-	"description": "Notebook renderer starter template",
-	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
-	"bugs": {
-		"url": "https://github.com/CodeEditorLand/Foundation/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Playform",
-		"email": "Hello@Playform.Cloud",
-		"url": "https://playform.cloud"
-	},
-	"type": "module",
-	"main": "./out/extension/extension.js",
-	"scripts": {
-		"compile": "npm run compile:extension && npm run compile:client",
-		"compile:client": "webpack --info-verbosity verbose --mode production",
-		"compile:extension": "tsc -b",
-		"dev": "concurrently -r npm:watch:extension npm:dev:client",
-		"dev:client": "webpack-dev-server",
-		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
-		"updatetypes": "cd src/extension/types && vscode-dts dev && vscode-dts master",
-		"vscode:prepublish": "npm run compile",
-		"watch": "concurrently -r \"npm:watch:*\"",
-		"watch:client": "webpack --info-verbosity verbose --mode development --watch",
-		"watch:extension": "tsc -b --watch"
-	},
+	"activationEvents": [
+		"*"
+	],
 	"contributes": {
 		"notebookOutputRenderer": [
 			{
@@ -56,9 +25,7 @@
 			}
 		]
 	},
-	"activationEvents": [
-		"*"
-	],
+	"description": "Notebook renderer starter template",
 	"devDependencies": {
 		"@types/glob": "^7.1.1",
 		"@types/mocha": "^7.0.1",
@@ -80,8 +47,22 @@
 		"webpack-cli": "^3.3.11",
 		"webpack-dev-server": "^3.10.3"
 	},
-	"publishConfig": {
-		"access": "public"
+	"displayName": "vscode-notebook-renderer-starter",
+	"enableProposedApi": true,
+	"main": "./out/extension/extension.js",
+	"name": "vscode-notebook-renderer-starter",
+	"scripts": {
+		"compile": "npm run compile:extension && npm run compile:client",
+		"compile:client": "webpack --info-verbosity verbose --mode production",
+		"compile:extension": "tsc -b",
+		"dev": "concurrently -r npm:watch:extension npm:dev:client",
+		"dev:client": "webpack-dev-server",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"updatetypes": "cd src/extension/types && vscode-dts dev && vscode-dts master",
+		"vscode:prepublish": "npm run compile",
+		"watch": "concurrently -r \"npm:watch:*\"",
+		"watch:client": "webpack --info-verbosity verbose --mode development --watch",
+		"watch:extension": "tsc -b --watch"
 	},
-	"enableProposedApi": true
+	"type": "module"
 }
