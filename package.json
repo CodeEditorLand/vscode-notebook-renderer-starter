@@ -43,8 +43,8 @@
 		"@types/glob": "8.1.0",
 		"@types/node": "20.12.12",
 		"concurrently": "8.2.2",
-		"css-loader": "7.1.1",
-		"glob": "10.3.15",
+		"css-loader": "7.1.2",
+		"glob": "10.3.16",
 		"style-loader": "4.0.0",
 		"ts-loader": "9.5.1"
 	},
