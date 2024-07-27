@@ -1,7 +1,18 @@
 {
-	"activationEvents": [
-		"*"
-	],
+	"name": "vscode-notebook-renderer-starter",
+	"displayName": "vscode-notebook-renderer-starter",
+	"description": "Notebook renderer starter template",
+	"main": "./out/extension/extension.js",
+	"scripts": {
+		"compile": "npm run compile:extension && npm run compile:client",
+		"compile:client": "webpack --info-verbosity verbose --mode production",
+		"compile:extension": "tsc -b",
+		"dev": "concurrently -r npm:watch:extension npm:dev:client",
+		"dev:client": "webpack-dev-server",
+		"updatetypes": "cd src/extension/types && vscode-dts dev && vscode-dts master",
+		"watch:client": "webpack --info-verbosity verbose --mode development --watch",
+		"watch:extension": "tsc -b --watch"
+	},
 	"contributes": {
 		"notebookOutputRenderer": [
 			{
@@ -25,7 +36,9 @@
 			}
 		]
 	},
-	"description": "Notebook renderer starter template",
+	"activationEvents": [
+		"*"
+	],
 	"devDependencies": {
 		"@types/glob": "7.1.1",
 		"@types/node": "12.11.7",
@@ -35,18 +48,5 @@
 		"style-loader": "1.1.4",
 		"ts-loader": "7.0.1"
 	},
-	"displayName": "vscode-notebook-renderer-starter",
-	"enableProposedApi": true,
-	"main": "./out/extension/extension.js",
-	"name": "vscode-notebook-renderer-starter",
-	"scripts": {
-		"compile": "npm run compile:extension && npm run compile:client",
-		"compile:client": "webpack --info-verbosity verbose --mode production",
-		"compile:extension": "tsc -b",
-		"dev": "concurrently -r npm:watch:extension npm:dev:client",
-		"dev:client": "webpack-dev-server",
-		"updatetypes": "cd src/extension/types && vscode-dts dev && vscode-dts master",
-		"watch:client": "webpack --info-verbosity verbose --mode development --watch",
-		"watch:extension": "tsc -b --watch"
-	}
+	"enableProposedApi": true
 }
