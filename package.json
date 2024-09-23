@@ -27,13 +27,13 @@
 	},
 	"description": "Notebook renderer starter template",
 	"devDependencies": {
-		"@types/glob": "^7.1.1",
-		"@types/node": "^12.11.7",
-		"concurrently": "^5.1.0",
-		"css-loader": "^3.5.2",
-		"glob": "^7.1.6",
-		"style-loader": "^1.1.4",
-		"ts-loader": "^7.0.1"
+		"@types/glob": "8.1.0",
+		"@types/node": "22.6.0",
+		"concurrently": "9.0.1",
+		"css-loader": "7.1.2",
+		"glob": "11.0.0",
+		"style-loader": "4.0.0",
+		"ts-loader": "9.5.1"
 	},
 	"displayName": "vscode-notebook-renderer-starter",
 	"enableProposedApi": true,
