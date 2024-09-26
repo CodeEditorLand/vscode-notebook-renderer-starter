@@ -41,7 +41,7 @@
 	],
 	"devDependencies": {
 		"@types/glob": "8.1.0",
-		"@types/node": "22.7.2",
+		"@types/node": "22.7.3",
 		"concurrently": "9.0.1",
 		"css-loader": "7.1.2",
 		"glob": "11.0.0",
