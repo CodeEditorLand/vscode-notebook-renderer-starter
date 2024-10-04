@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { MarkdownString } from 'vscode';
+import { MarkdownString } from "vscode";
 
 /**
  * This is the place for API experiments and proposals.
@@ -16,8 +16,7 @@ import { MarkdownString } from 'vscode';
  * - Copy this file to your project.
  */
 
-declare module 'vscode' {
-
+declare module "vscode" {
 	// #region auth provider: https://github.com/microsoft/vscode/issues/88309
 
 	export interface AuthenticationSession {
@@ -62,7 +61,12 @@ declare module 'vscode' {
 		 */
 		readonly scopes: string[];
 
-		constructor(id: string, accessToken: string, account: { displayName: string, id: string }, scopes: string[]);
+		constructor(
+			id: string,
+			accessToken: string,
+			account: { displayName: string; id: string },
+			scopes: string[],
+		);
 	}
 
 	/**
@@ -97,12 +101,12 @@ declare module 'vscode' {
 	}
 
 	/**
-	* An [event](#Event) which fires when an [AuthenticationSession](#AuthenticationSession) is added, removed, or changed.
-	*/
+	 * An [event](#Event) which fires when an [AuthenticationSession](#AuthenticationSession) is added, removed, or changed.
+	 */
 	export interface AuthenticationSessionsChangeEvent {
 		/**
 		 * The ids of the [AuthenticationSession](#AuthenticationSession)s that have been added.
-		*/
+		 */
 		readonly added: string[];
 
 		/**
@@ -136,7 +140,7 @@ declare module 'vscode' {
 
 		/**
 		 * Whether it is possible to be signed into multiple accounts at once with this provider
-		*/
+		 */
 		readonly supportsMultipleAccounts: boolean;
 
 		/**
@@ -172,7 +176,9 @@ declare module 'vscode' {
 		 * @param provider The authentication provider provider.
 		 * @return A [disposable](#Disposable) that unregisters this provider when being disposed.
 		 */
-		export function registerAuthenticationProvider(provider: AuthenticationProvider): Disposable;
+		export function registerAuthenticationProvider(
+			provider: AuthenticationProvider,
+		): Disposable;
 
 		/**
 		 * Fires with the provider id that was registered or unregistered.
@@ -199,7 +205,10 @@ declare module 'vscode' {
 		 * provider
 		 * @returns A thenable that resolve to whether the provider has sessions with the requested scopes.
 		 */
-		export function hasSessions(providerId: string, scopes: string[]): Thenable<boolean>;
+		export function hasSessions(
+			providerId: string,
+			scopes: string[],
+		): Thenable<boolean>;
 
 		/**
 		 * Get an authentication session matching the desired scopes. Rejects if a provider with providerId is not
@@ -211,7 +220,11 @@ declare module 'vscode' {
 		 * @param options The [getSessionOptions](#GetSessionOptions) to use
 		 * @returns A thenable that resolves to an authentication session
 		 */
-		export function getSession(providerId: string, scopes: string[], options: AuthenticationGetSessionOptions & { createIfNone: true }): Thenable<AuthenticationSession2>;
+		export function getSession(
+			providerId: string,
+			scopes: string[],
+			options: AuthenticationGetSessionOptions & { createIfNone: true },
+		): Thenable<AuthenticationSession2>;
 
 		/**
 		 * Get an authentication session matching the desired scopes. Rejects if a provider with providerId is not
@@ -223,7 +236,11 @@ declare module 'vscode' {
 		 * @param options The [getSessionOptions](#GetSessionOptions) to use
 		 * @returns A thenable that resolves to an authentication session if available, or undefined if there are no sessions
 		 */
-		export function getSession(providerId: string, scopes: string[], options: AuthenticationGetSessionOptions): Thenable<AuthenticationSession2 | undefined>;
+		export function getSession(
+			providerId: string,
+			scopes: string[],
+			options: AuthenticationGetSessionOptions,
+		): Thenable<AuthenticationSession2 | undefined>;
 
 		/**
 		 * @deprecated
@@ -234,34 +251,45 @@ declare module 'vscode' {
 		 * @param scopes A list of scopes representing the permissions requested. These are dependent on the authentication
 		 * provider
 		 */
-		export function getSessions(providerId: string, scopes: string[]): Thenable<ReadonlyArray<AuthenticationSession>>;
+		export function getSessions(
+			providerId: string,
+			scopes: string[],
+		): Thenable<ReadonlyArray<AuthenticationSession>>;
 
 		/**
 		 * @deprecated
-		* Prompt a user to login to create a new authenticaiton session. Rejects if a provider with
-		* providerId is not registered, or if the user does not consent to sharing authentication
-		* information with the extension.
-		* @param providerId The id of the provider to use
-		* @param scopes A list of scopes representing the permissions requested. These are dependent on the authentication
-		* provider
-		*/
-		export function login(providerId: string, scopes: string[]): Thenable<AuthenticationSession>;
+		 * Prompt a user to login to create a new authenticaiton session. Rejects if a provider with
+		 * providerId is not registered, or if the user does not consent to sharing authentication
+		 * information with the extension.
+		 * @param providerId The id of the provider to use
+		 * @param scopes A list of scopes representing the permissions requested. These are dependent on the authentication
+		 * provider
+		 */
+		export function login(
+			providerId: string,
+			scopes: string[],
+		): Thenable<AuthenticationSession>;
 
 		/**
 		 * @deprecated
-		* Logout of a specific session.
-		* @param providerId The id of the provider to use
-		* @param sessionId The session id to remove
-		* provider
-		*/
-		export function logout(providerId: string, sessionId: string): Thenable<void>;
+		 * Logout of a specific session.
+		 * @param providerId The id of the provider to use
+		 * @param sessionId The session id to remove
+		 * provider
+		 */
+		export function logout(
+			providerId: string,
+			sessionId: string,
+		): Thenable<void>;
 
 		/**
-		* An [event](#Event) which fires when the array of sessions has changed, or data
-		* within a session has changed for a provider. Fires with the ids of the providers
-		* that have had session data change.
-		*/
-		export const onDidChangeSessions: Event<{ [providerId: string]: AuthenticationSessionsChangeEvent; }>;
+		 * An [event](#Event) which fires when the array of sessions has changed, or data
+		 * within a session has changed for a provider. Fires with the ids of the providers
+		 * that have had session data change.
+		 */
+		export const onDidChangeSessions: Event<{
+			[providerId: string]: AuthenticationSessionsChangeEvent;
+		}>;
 	}
 
 	//#endregion
@@ -280,20 +308,20 @@ declare module 'vscode' {
 	}
 
 	export interface ResolvedOptions {
-		extensionHostEnv?: { [key: string]: string | null; };
+		extensionHostEnv?: { [key: string]: string | null };
 	}
 
 	export interface TunnelOptions {
-		remoteAddress: { port: number, host: string; };
+		remoteAddress: { port: number; host: string };
 		// The desired local port. If this port can't be used, then another will be chosen.
 		localAddressPort?: number;
 		label?: string;
 	}
 
 	export interface TunnelDescription {
-		remoteAddress: { port: number, host: string; };
+		remoteAddress: { port: number; host: string };
 		//The complete local address(ex. localhost:1234)
-		localAddress: { port: number, host: string; } | string;
+		localAddress: { port: number; host: string } | string;
 	}
 
 	export interface Tunnel extends TunnelDescription {
@@ -313,31 +341,46 @@ declare module 'vscode' {
 		 * detected are read-only from the forwarded ports UI.
 		 */
 		environmentTunnels?: TunnelDescription[];
-
 	}
 
-	export type ResolverResult = ResolvedAuthority & ResolvedOptions & TunnelInformation;
+	export type ResolverResult = ResolvedAuthority &
+		ResolvedOptions &
+		TunnelInformation;
 
 	export class RemoteAuthorityResolverError extends Error {
-		static NotAvailable(message?: string, handled?: boolean): RemoteAuthorityResolverError;
-		static TemporarilyNotAvailable(message?: string): RemoteAuthorityResolverError;
+		static NotAvailable(
+			message?: string,
+			handled?: boolean,
+		): RemoteAuthorityResolverError;
+		static TemporarilyNotAvailable(
+			message?: string,
+		): RemoteAuthorityResolverError;
 
 		constructor(message?: string);
 	}
 
 	export interface RemoteAuthorityResolver {
-		resolve(authority: string, context: RemoteAuthorityResolverContext): ResolverResult | Thenable<ResolverResult>;
+		resolve(
+			authority: string,
+			context: RemoteAuthorityResolverContext,
+		): ResolverResult | Thenable<ResolverResult>;
 		/**
 		 * Can be optionally implemented if the extension can forward ports better than the core.
 		 * When not implemented, the core will use its default forwarding logic.
 		 * When implemented, the core will use this to forward ports.
 		 */
-		tunnelFactory?: (tunnelOptions: TunnelOptions) => Thenable<Tunnel> | undefined;
+		tunnelFactory?: (
+			tunnelOptions: TunnelOptions,
+		) => Thenable<Tunnel> | undefined;
 
 		/**
 		 * Provides filtering for candidate ports.
 		 */
-		showCandidatePort?: (host: string, port: number, detail: string) => Thenable<boolean>;
+		showCandidatePort?: (
+			host: string,
+			port: number,
+			detail: string,
+		) => Thenable<boolean>;
 	}
 
 	export namespace workspace {
@@ -346,7 +389,9 @@ declare module 'vscode' {
 		 * By default, openTunnel only support localhost; however, RemoteAuthorityResolver:tunnelFactory can be used to support other ips.
 		 * @param tunnelOptions The `localPort` is a suggestion only. If that port is not available another will be chosen.
 		 */
-		export function openTunnel(tunnelOptions: TunnelOptions): Thenable<Tunnel>;
+		export function openTunnel(
+			tunnelOptions: TunnelOptions,
+		): Thenable<Tunnel>;
 
 		/**
 		 * Gets an array of the currently available tunnels. This does not include environment tunnels, only tunnels that have been created by the user.
@@ -370,7 +415,7 @@ declare module 'vscode' {
 		label: string; // myLabel:/${path}
 		// TODO@isidorn
 		// eslint-disable-next-line vscode-dts-literal-or-types
-		separator: '/' | '\\' | '';
+		separator: "/" | "\\" | "";
 		tildify?: boolean;
 		normalizeDriveLetter?: boolean;
 		workspaceSuffix?: string;
@@ -378,8 +423,13 @@ declare module 'vscode' {
 	}
 
 	export namespace workspace {
-		export function registerRemoteAuthorityResolver(authorityPrefix: string, resolver: RemoteAuthorityResolver): Disposable;
-		export function registerResourceLabelFormatter(formatter: ResourceLabelFormatter): Disposable;
+		export function registerRemoteAuthorityResolver(
+			authorityPrefix: string,
+			resolver: RemoteAuthorityResolver,
+		): Disposable;
+		export function registerResourceLabelFormatter(
+			formatter: ResourceLabelFormatter,
+		): Disposable;
 	}
 
 	//#endregion
@@ -396,7 +446,12 @@ declare module 'vscode' {
 	}
 
 	export namespace window {
-		export function createWebviewTextEditorInset(editor: TextEditor, line: number, height: number, options?: WebviewOptions): WebviewEditorInset;
+		export function createWebviewTextEditorInset(
+			editor: TextEditor,
+			line: number,
+			height: number,
+			options?: WebviewOptions,
+		): WebviewEditorInset;
 	}
 
 	//#endregion
@@ -404,10 +459,25 @@ declare module 'vscode' {
 	//#region read/write in chunks: https://github.com/microsoft/vscode/issues/84515
 
 	export interface FileSystemProvider {
-		open?(resource: Uri, options: { create: boolean; }): number | Thenable<number>;
+		open?(
+			resource: Uri,
+			options: { create: boolean },
+		): number | Thenable<number>;
 		close?(fd: number): void | Thenable<void>;
-		read?(fd: number, pos: number, data: Uint8Array, offset: number, length: number): number | Thenable<number>;
-		write?(fd: number, pos: number, data: Uint8Array, offset: number, length: number): number | Thenable<number>;
+		read?(
+			fd: number,
+			pos: number,
+			data: Uint8Array,
+			offset: number,
+			length: number,
+		): number | Thenable<number>;
+		write?(
+			fd: number,
+			pos: number,
+			data: Uint8Array,
+			offset: number,
+			length: number,
+		): number | Thenable<number>;
 	}
 
 	//#endregion
@@ -626,7 +696,12 @@ declare module 'vscode' {
 		 * @param progress A progress callback that must be invoked for all results.
 		 * @param token A cancellation token.
 		 */
-		provideTextSearchResults(query: TextSearchQuery, options: TextSearchOptions, progress: Progress<TextSearchResult>, token: CancellationToken): ProviderResult<TextSearchComplete>;
+		provideTextSearchResults(
+			query: TextSearchQuery,
+			options: TextSearchOptions,
+			progress: Progress<TextSearchResult>,
+			token: CancellationToken,
+		): ProviderResult<TextSearchComplete>;
 	}
 
 	//#endregion
@@ -675,7 +750,11 @@ declare module 'vscode' {
 		 * @param options A set of options to consider while searching files.
 		 * @param token A cancellation token.
 		 */
-		provideFileSearchResults(query: FileSearchQuery, options: FileSearchOptions, token: CancellationToken): ProviderResult<Uri[]>;
+		provideFileSearchResults(
+			query: FileSearchQuery,
+			options: FileSearchOptions,
+			token: CancellationToken,
+		): ProviderResult<Uri[]>;
 	}
 
 	export namespace workspace {
@@ -688,7 +767,10 @@ declare module 'vscode' {
 		 * @param provider The provider.
 		 * @return A [disposable](#Disposable) that unregisters this provider when being disposed.
 		 */
-		export function registerFileSearchProvider(scheme: string, provider: FileSearchProvider): Disposable;
+		export function registerFileSearchProvider(
+			scheme: string,
+			provider: FileSearchProvider,
+		): Disposable;
 
 		/**
 		 * Register a text search provider.
@@ -699,7 +781,10 @@ declare module 'vscode' {
 		 * @param provider The provider.
 		 * @return A [disposable](#Disposable) that unregisters this provider when being disposed.
 		 */
-		export function registerTextSearchProvider(scheme: string, provider: TextSearchProvider): Disposable;
+		export function registerTextSearchProvider(
+			scheme: string,
+			provider: TextSearchProvider,
+		): Disposable;
 	}
 
 	//#endregion
@@ -782,7 +867,11 @@ declare module 'vscode' {
 		 * @param token A token that can be used to signal cancellation to the underlying search engine.
 		 * @return A thenable that resolves when the search is complete.
 		 */
-		export function findTextInFiles(query: TextSearchQuery, callback: (result: TextSearchResult) => void, token?: CancellationToken): Thenable<TextSearchComplete>;
+		export function findTextInFiles(
+			query: TextSearchQuery,
+			callback: (result: TextSearchResult) => void,
+			token?: CancellationToken,
+		): Thenable<TextSearchComplete>;
 
 		/**
 		 * Search text in files across all [workspace folders](#workspace.workspaceFolders) in the workspace.
@@ -792,7 +881,12 @@ declare module 'vscode' {
 		 * @param token A token that can be used to signal cancellation to the underlying search engine.
 		 * @return A thenable that resolves when the search is complete.
 		 */
-		export function findTextInFiles(query: TextSearchQuery, options: FindTextInFilesOptions, callback: (result: TextSearchResult) => void, token?: CancellationToken): Thenable<TextSearchComplete>;
+		export function findTextInFiles(
+			query: TextSearchQuery,
+			options: FindTextInFilesOptions,
+			callback: (result: TextSearchResult) => void,
+			token?: CancellationToken,
+		): Thenable<TextSearchComplete>;
 	}
 
 	//#endregion
@@ -810,7 +904,6 @@ declare module 'vscode' {
 	}
 
 	export namespace commands {
-
 		/**
 		 * Registers a diff information command that can be invoked via a keyboard shortcut,
 		 * a menu item, an action, or directly.
@@ -825,7 +918,11 @@ declare module 'vscode' {
 		 * @param thisArg The `this` context used when invoking the handler function.
 		 * @return Disposable which unregisters this command on disposal.
 		 */
-		export function registerDiffInformationCommand(command: string, callback: (diff: LineChange[], ...args: any[]) => any, thisArg?: any): Disposable;
+		export function registerDiffInformationCommand(
+			command: string,
+			callback: (diff: LineChange[], ...args: any[]) => any,
+			thisArg?: any,
+		): Disposable;
 	}
 
 	//#endregion
@@ -842,11 +939,16 @@ declare module 'vscode' {
 
 	export interface DecorationProvider {
 		onDidChangeDecorations: Event<undefined | Uri | Uri[]>;
-		provideDecoration(uri: Uri, token: CancellationToken): ProviderResult<Decoration>;
+		provideDecoration(
+			uri: Uri,
+			token: CancellationToken,
+		): ProviderResult<Decoration>;
 	}
 
 	export namespace window {
-		export function registerDecorationProvider(provider: DecorationProvider): Disposable;
+		export function registerDecorationProvider(
+			provider: DecorationProvider,
+		): Disposable;
 	}
 
 	//#endregion
@@ -868,7 +970,10 @@ declare module 'vscode' {
 		 * Deprecated, use DebugAdapterDescriptorFactory.provideDebugAdapter instead.
 		 * @deprecated Use DebugAdapterDescriptorFactory.createDebugAdapterDescriptor instead
 		 */
-		debugAdapterExecutable?(folder: WorkspaceFolder | undefined, token?: CancellationToken): ProviderResult<DebugAdapterExecutable>;
+		debugAdapterExecutable?(
+			folder: WorkspaceFolder | undefined,
+			token?: CancellationToken,
+		): ProviderResult<DebugAdapterExecutable>;
 	}
 
 	//#endregion
@@ -885,7 +990,7 @@ declare module 'vscode' {
 		Warning = 4,
 		Error = 5,
 		Critical = 6,
-		Off = 7
+		Off = 7,
 	}
 
 	export namespace env {
@@ -908,7 +1013,6 @@ declare module 'vscode' {
 	 * Represents the validation type of the Source Control input.
 	 */
 	export enum SourceControlInputBoxValidationType {
-
 		/**
 		 * Something not allowed by the rules of a language or other means.
 		 */
@@ -922,11 +1026,10 @@ declare module 'vscode' {
 		/**
 		 * Something to inform about but not a problem.
 		 */
-		Information = 2
+		Information = 2,
 	}
 
 	export interface SourceControlInputBoxValidation {
-
 		/**
 		 * The validation message to display.
 		 */
@@ -942,12 +1045,14 @@ declare module 'vscode' {
 	 * Represents the input box in the Source Control viewlet.
 	 */
 	export interface SourceControlInputBox {
-
 		/**
 		 * A validation function for the input box. It's possible to change
 		 * the validation provider simply by setting this property to a different function.
 		 */
-		validateInput?(value: string, cursorPosition: number): ProviderResult<SourceControlInputBoxValidation | undefined | null>;
+		validateInput?(
+			value: string,
+			cursorPosition: number,
+		): ProviderResult<SourceControlInputBoxValidation | undefined | null>;
 	}
 
 	//#endregion
@@ -955,7 +1060,6 @@ declare module 'vscode' {
 	//#region @joaomoreno: SCM selected provider
 
 	export interface SourceControl {
-
 		/**
 		 * Whether the source control is selected.
 		 */
@@ -1036,7 +1140,9 @@ declare module 'vscode' {
 		 * @param handler The link handler being registered.
 		 * @return A disposable that unregisters the link handler.
 		 */
-		export function registerTerminalLinkHandler(handler: TerminalLinkHandler): Disposable;
+		export function registerTerminalLinkHandler(
+			handler: TerminalLinkHandler,
+		): Disposable;
 	}
 
 	/**
@@ -1059,7 +1165,9 @@ declare module 'vscode' {
 	//#region Terminal link provider https://github.com/microsoft/vscode/issues/91606
 
 	export namespace window {
-		export function registerTerminalLinkProvider(provider: TerminalLinkProvider): Disposable;
+		export function registerTerminalLinkProvider(
+			provider: TerminalLinkProvider,
+		): Disposable;
 	}
 
 	export interface TerminalLinkContext {
@@ -1075,7 +1183,7 @@ declare module 'vscode' {
 	}
 
 	export interface TerminalLinkProvider<T = TerminalLink> {
-		provideTerminalLinks(context: TerminalLinkContext): ProviderResult<T[]>
+		provideTerminalLinks(context: TerminalLinkContext): ProviderResult<T[]>;
 
 		/**
 		 * Handle an activated terminal link.
@@ -1136,7 +1244,6 @@ declare module 'vscode' {
 	 * Label describing the [Tree item](#TreeItem)
 	 */
 	export interface TreeItemLabel {
-
 		/**
 		 * A human-readable string describing the [Tree item](#TreeItem).
 		 */
@@ -1147,7 +1254,6 @@ declare module 'vscode' {
 		 * first is the inclusive start index and the second the exclusive end index
 		 */
 		highlights?: [number, number][];
-
 	}
 
 	export class TreeItem2 extends TreeItem {
@@ -1172,7 +1278,10 @@ declare module 'vscode' {
 		 * @param label Label describing this item
 		 * @param collapsibleState [TreeItemCollapsibleState](#TreeItemCollapsibleState) of the tree item. Default is [TreeItemCollapsibleState.None](#TreeItemCollapsibleState.None)
 		 */
-		constructor(label: TreeItemLabel, collapsibleState?: TreeItemCollapsibleState);
+		constructor(
+			label: TreeItemLabel,
+			collapsibleState?: TreeItemCollapsibleState,
+		);
 	}
 	//#endregion
 
@@ -1193,7 +1302,11 @@ declare module 'vscode' {
 		 * [Pseudoterminal.onDidClose](#Pseudoterminal.onDidClose).
 		 * @param callback The callback that will be called when the task is started by a user.
 		 */
-		constructor(callback: (resolvedDefinition?: TaskDefinition) => Thenable<Pseudoterminal>);
+		constructor(
+			callback: (
+				resolvedDefinition?: TaskDefinition,
+			) => Thenable<Pseudoterminal>,
+		);
 	}
 	//#endregion
 
@@ -1209,12 +1322,10 @@ declare module 'vscode' {
 	//#region Status bar item with ID and Name: https://github.com/microsoft/vscode/issues/74972
 
 	export namespace window {
-
 		/**
 		 * Options to configure the status bar item.
 		 */
 		export interface StatusBarItemOptions {
-
 			/**
 			 * A unique identifier of the status bar item. The identifier
 			 * is for example used to allow a user to show or hide the
@@ -1254,7 +1365,9 @@ declare module 'vscode' {
 		 * of the extension and the `StatusBarItemOptions.name` will be the extension name.
 		 * @return A new status bar item.
 		 */
-		export function createStatusBarItem(options?: StatusBarItemOptions): StatusBarItem;
+		export function createStatusBarItem(
+			options?: StatusBarItemOptions,
+		): StatusBarItem;
 	}
 
 	//#endregion
@@ -1275,7 +1388,11 @@ declare module 'vscode' {
 		 * @return A list of ranges that can be live-renamed togehter. The ranges must have
 		 * identical length and contain identical text content. The ranges cannot overlap.
 		 */
-		provideOnTypeRenameRanges(document: TextDocument, position: Position, token: CancellationToken): ProviderResult<Range[]>;
+		provideOnTypeRenameRanges(
+			document: TextDocument,
+			position: Position,
+			token: CancellationToken,
+		): ProviderResult<Range[]>;
 	}
 
 	namespace languages {
@@ -1291,7 +1408,11 @@ declare module 'vscode' {
 		 * @param stopPattern Stop on type renaming when input text matches the regular expression. Defaults to `^\s`.
 		 * @return A [disposable](#Disposable) that unregisters this provider when being disposed.
 		 */
-		export function registerOnTypeRenameProvider(selector: DocumentSelector, provider: OnTypeRenameProvider, stopPattern?: RegExp): Disposable;
+		export function registerOnTypeRenameProvider(
+			selector: DocumentSelector,
+			provider: OnTypeRenameProvider,
+			stopPattern?: RegExp,
+		): Disposable;
 	}
 
 	//#endregion
@@ -1301,7 +1422,6 @@ declare module 'vscode' {
 	// TODO: Also for custom editor
 
 	export interface CustomTextEditorProvider {
-
 		/**
 		 * Handle when the underlying resource for a custom editor is renamed.
 		 *
@@ -1314,7 +1434,11 @@ declare module 'vscode' {
 		 *
 		 * @return Thenable indicating that the webview editor has been moved.
 		 */
-		moveCustomTextEditor?(newDocument: TextDocument, existingWebviewPanel: WebviewPanel, token: CancellationToken): Thenable<void>;
+		moveCustomTextEditor?(
+			newDocument: TextDocument,
+			existingWebviewPanel: WebviewPanel,
+			token: CancellationToken,
+		): Thenable<void>;
 	}
 
 	//#endregion
@@ -1334,13 +1458,13 @@ declare module 'vscode' {
 
 	export enum CellKind {
 		Markdown = 1,
-		Code = 2
+		Code = 2,
 	}
 
 	export enum CellOutputKind {
 		Text = 1,
 		Error = 2,
-		Rich = 3
+		Rich = 3,
 	}
 
 	export interface CellStreamOutput {
@@ -1390,18 +1514,21 @@ declare module 'vscode' {
 		 *   }
 		 * }
 		 */
-		data: { [key: string]: any; };
+		data: { [key: string]: any };
 
 		readonly metadata?: NotebookCellOutputMetadata;
 	}
 
-	export type CellOutput = CellStreamOutput | CellErrorOutput | CellDisplayOutput;
+	export type CellOutput =
+		| CellStreamOutput
+		| CellErrorOutput
+		| CellDisplayOutput;
 
 	export enum NotebookCellRunState {
 		Running = 1,
 		Idle = 2,
 		Success = 3,
-		Error = 4
+		Error = 4,
 	}
 
 	export interface NotebookCellMetadata {
@@ -1533,7 +1660,14 @@ declare module 'vscode' {
 	}
 
 	export interface NotebookEditorCellEdit {
-		insert(index: number, content: string | string[], language: string, type: CellKind, outputs: CellOutput[], metadata: NotebookCellMetadata | undefined): void;
+		insert(
+			index: number,
+			content: string | string[],
+			language: string,
+			type: CellKind,
+			outputs: CellOutput[],
+			metadata: NotebookCellMetadata | undefined,
+		): void;
 		delete(index: number): void;
 	}
 
@@ -1586,7 +1720,9 @@ declare module 'vscode' {
 		 */
 		asWebviewUri(localResource: Uri): Uri;
 
-		edit(callback: (editBuilder: NotebookEditorCellEdit) => void): Thenable<boolean>;
+		edit(
+			callback: (editBuilder: NotebookEditorCellEdit) => void,
+		): Thenable<boolean>;
 	}
 
 	export interface NotebookOutputSelector {
@@ -1605,7 +1741,10 @@ declare module 'vscode' {
 		 * @returns HTML fragment. We can probably return `CellOutput` instead of string ?
 		 *
 		 */
-		render(document: NotebookDocument, request: NotebookRenderRequest): string;
+		render(
+			document: NotebookDocument,
+			request: NotebookRenderRequest,
+		): string;
 
 		/**
 		 * Call before HTML from the renderer is executed, and will be called for
@@ -1619,7 +1758,10 @@ declare module 'vscode' {
 		 * If you need to keep an association between the communication object
 		 * and the document for use in the `render()` method, you can use a WeakMap.
 		 */
-		resolveNotebook?(document: NotebookDocument, communication: NotebookCommunication): void;
+		resolveNotebook?(
+			document: NotebookDocument,
+			communication: NotebookCommunication,
+		): void;
 
 		readonly preloads?: Uri[];
 	}
@@ -1632,7 +1774,6 @@ declare module 'vscode' {
 	}
 
 	export interface NotebookCellsChangeEvent {
-
 		/**
 		 * The affected document.
 		 */
@@ -1641,7 +1782,6 @@ declare module 'vscode' {
 	}
 
 	export interface NotebookCellMoveEvent {
-
 		/**
 		 * The affected document.
 		 */
@@ -1651,7 +1791,6 @@ declare module 'vscode' {
 	}
 
 	export interface NotebookCellOutputsChangeEvent {
-
 		/**
 		 * The affected document.
 		 */
@@ -1660,7 +1799,6 @@ declare module 'vscode' {
 	}
 
 	export interface NotebookCellLanguageChangeEvent {
-
 		/**
 		 * The affected document.
 		 */
@@ -1684,7 +1822,6 @@ declare module 'vscode' {
 	}
 
 	interface NotebookDocumentContentChangeEvent {
-
 		/**
 		 * The document that the edit is for.
 		 */
@@ -1692,7 +1829,6 @@ declare module 'vscode' {
 	}
 
 	interface NotebookDocumentEditEvent {
-
 		/**
 		 * The document that the edit is for.
 		 */
@@ -1782,12 +1918,29 @@ declare module 'vscode' {
 	}
 
 	export interface NotebookContentProvider {
-		openNotebook(uri: Uri, openContext: NotebookDocumentOpenContext): NotebookData | Promise<NotebookData>;
-		resolveNotebook(document: NotebookDocument, webview: NotebookCommunication): Promise<void>;
-		saveNotebook(document: NotebookDocument, cancellation: CancellationToken): Promise<void>;
-		saveNotebookAs(targetResource: Uri, document: NotebookDocument, cancellation: CancellationToken): Promise<void>;
+		openNotebook(
+			uri: Uri,
+			openContext: NotebookDocumentOpenContext,
+		): NotebookData | Promise<NotebookData>;
+		resolveNotebook(
+			document: NotebookDocument,
+			webview: NotebookCommunication,
+		): Promise<void>;
+		saveNotebook(
+			document: NotebookDocument,
+			cancellation: CancellationToken,
+		): Promise<void>;
+		saveNotebookAs(
+			targetResource: Uri,
+			document: NotebookDocument,
+			cancellation: CancellationToken,
+		): Promise<void>;
 		readonly onDidChangeNotebook: Event<NotebookDocumentContentChangeEvent>;
-		backupNotebook(document: NotebookDocument, context: NotebookDocumentBackupContext, cancellation: CancellationToken): Promise<NotebookDocumentBackup>;
+		backupNotebook(
+			document: NotebookDocument,
+			context: NotebookDocumentBackupContext,
+			cancellation: CancellationToken,
+		): Promise<NotebookDocumentBackup>;
 
 		kernel?: NotebookKernel;
 	}
@@ -1795,26 +1948,33 @@ declare module 'vscode' {
 	export interface NotebookKernel {
 		label: string;
 		preloads?: Uri[];
-		executeCell(document: NotebookDocument, cell: NotebookCell, token: CancellationToken): Promise<void>;
-		executeAllCells(document: NotebookDocument, token: CancellationToken): Promise<void>;
+		executeCell(
+			document: NotebookDocument,
+			cell: NotebookCell,
+			token: CancellationToken,
+		): Promise<void>;
+		executeAllCells(
+			document: NotebookDocument,
+			token: CancellationToken,
+		): Promise<void>;
 	}
 
 	export namespace notebook {
 		export function registerNotebookContentProvider(
 			notebookType: string,
-			provider: NotebookContentProvider
+			provider: NotebookContentProvider,
 		): Disposable;
 
 		export function registerNotebookKernel(
 			id: string,
 			selectors: GlobPattern[],
-			kernel: NotebookKernel
+			kernel: NotebookKernel,
 		): Disposable;
 
 		export function registerNotebookOutputRenderer(
 			id: string,
 			outputSelector: NotebookOutputSelector,
-			renderer: NotebookOutputRenderer
+			renderer: NotebookOutputRenderer,
 		): Disposable;
 
 		export const onDidOpenNotebookDocument: Event<NotebookDocument>;
@@ -1829,7 +1989,9 @@ declare module 'vscode' {
 		export const onDidChangeVisibleNotebookEditors: Event<NotebookEditor[]>;
 
 		export let activeNotebookEditor: NotebookEditor | undefined;
-		export const onDidChangeActiveNotebookEditor: Event<NotebookEditor | undefined>;
+		export const onDidChangeActiveNotebookEditor: Event<
+			NotebookEditor | undefined
+		>;
 		export const onDidChangeNotebookCells: Event<NotebookCellsChangeEvent>;
 		export const onDidChangeCellOutputs: Event<NotebookCellOutputsChangeEvent>;
 		export const onDidChangeCellLanguage: Event<NotebookCellLanguageChangeEvent>;
@@ -1840,7 +2002,10 @@ declare module 'vscode' {
 		 * @param notebook
 		 * @param selector
 		 */
-		export function createConcatTextDocument(notebook: NotebookDocument, selector?: DocumentSelector): NotebookConcatTextDocument;
+		export function createConcatTextDocument(
+			notebook: NotebookDocument,
+			selector?: DocumentSelector,
+		): NotebookConcatTextDocument;
 	}
 
 	//#endregion
@@ -1901,7 +2066,7 @@ declare module 'vscode' {
 		/**
 		 * The icon path or [ThemeIcon](#ThemeIcon) for the timeline item.
 		 */
-		iconPath?: Uri | { light: Uri; dark: Uri; } | ThemeIcon;
+		iconPath?: Uri | { light: Uri; dark: Uri } | ThemeIcon;
 
 		/**
 		 * A human readable string describing less prominent details of the timeline item.
@@ -1987,7 +2152,7 @@ declare module 'vscode' {
 		 * An optional maximum number timeline items or the all timeline items newer (inclusive) than the timestamp or id that should be returned.
 		 * If `undefined` all timeline items should be returned.
 		 */
-		limit?: number | { timestamp: number; id?: string; };
+		limit?: number | { timestamp: number; id?: string };
 	}
 
 	export interface TimelineProvider {
@@ -2016,7 +2181,11 @@ declare module 'vscode' {
 		 * @return The [timeline result](#TimelineResult) or a thenable that resolves to such. The lack of a result
 		 * can be signaled by returning `undefined`, `null`, or an empty array.
 		 */
-		provideTimeline(uri: Uri, options: TimelineOptions, token: CancellationToken): ProviderResult<Timeline>;
+		provideTimeline(
+			uri: Uri,
+			options: TimelineOptions,
+			token: CancellationToken,
+		): ProviderResult<Timeline>;
 	}
 
 	export namespace workspace {
@@ -2030,8 +2199,11 @@ declare module 'vscode' {
 		 * @param scheme A scheme or schemes that defines which documents this provider is applicable to. Can be `*` to target all documents.
 		 * @param provider A timeline provider.
 		 * @return A [disposable](#Disposable) that unregisters this provider when being disposed.
-		*/
-		export function registerTimelineProvider(scheme: string | string[], provider: TimelineProvider): Disposable;
+		 */
+		export function registerTimelineProvider(
+			scheme: string | string[],
+			provider: TimelineProvider,
+		): Disposable;
 	}
 
 	//#endregion
@@ -2096,7 +2268,7 @@ declare module 'vscode' {
 		Other = 0,
 		Comment = 1,
 		String = 2,
-		RegEx = 4
+		RegEx = 4,
 	}
 
 	export interface TokenInformation {
@@ -2105,7 +2277,10 @@ declare module 'vscode' {
 	}
 
 	export namespace languages {
-		export function getTokenInformationAtPosition(document: TextDocument, position: Position): Promise<TokenInformation>;
+		export function getTokenInformationAtPosition(
+			document: TextDocument,
+			position: Position,
+		): Promise<TokenInformation>;
 	}
 
 	//#endregion
