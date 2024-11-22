@@ -14,6 +14,7 @@ export class SampleRenderer implements vscode.NotebookOutputRenderer {
 		// mode and load from the webpack-dev-server in development, which provides
 		// hot reloading for easy development.
 		const webpackDevServerPort = process.env.RENDERER_USE_WDS_PORT;
+
 		if (
 			webpackDevServerPort &&
 			context.extensionMode !== vscode.ExtensionMode.Production

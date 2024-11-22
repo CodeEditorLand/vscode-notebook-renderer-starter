@@ -21,6 +21,7 @@ declare module "vscode" {
 
 	export interface AuthenticationSession {
 		id: string;
+
 		getAccessToken(): Thenable<string>;
 		account: {
 			displayName: string;
@@ -408,6 +409,7 @@ declare module "vscode" {
 	export interface ResourceLabelFormatter {
 		scheme: string;
 		authority?: string;
+
 		formatting: ResourceLabelFormatting;
 	}
 
@@ -427,6 +429,7 @@ declare module "vscode" {
 			authorityPrefix: string,
 			resolver: RemoteAuthorityResolver,
 		): Disposable;
+
 		export function registerResourceLabelFormatter(
 			formatter: ResourceLabelFormatter,
 		): Disposable;
@@ -1651,7 +1654,9 @@ declare module "vscode" {
 		dispose(): void;
 		onDidChange: Event<void>;
 		version: number;
+
 		getText(): string;
+
 		getText(range: Range): string;
 		offsetAt(position: Position): number;
 		positionAt(offset: number): Position;
@@ -1978,6 +1983,7 @@ declare module "vscode" {
 		): Disposable;
 
 		export const onDidOpenNotebookDocument: Event<NotebookDocument>;
+
 		export const onDidCloseNotebookDocument: Event<NotebookDocument>;
 
 		/**
@@ -1986,14 +1992,19 @@ declare module "vscode" {
 		export const notebookDocuments: ReadonlyArray<NotebookDocument>;
 
 		export let visibleNotebookEditors: NotebookEditor[];
+
 		export const onDidChangeVisibleNotebookEditors: Event<NotebookEditor[]>;
 
 		export let activeNotebookEditor: NotebookEditor | undefined;
+
 		export const onDidChangeActiveNotebookEditor: Event<
 			NotebookEditor | undefined
 		>;
+
 		export const onDidChangeNotebookCells: Event<NotebookCellsChangeEvent>;
+
 		export const onDidChangeCellOutputs: Event<NotebookCellOutputsChangeEvent>;
+
 		export const onDidChangeCellLanguage: Event<NotebookCellLanguageChangeEvent>;
 		/**
 		 * Create a document that is the concatenation of all  notebook cells. By default all code-cells are included

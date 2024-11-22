@@ -10747,6 +10747,7 @@ declare module "vscode" {
 			provider: SignatureHelpProvider,
 			...triggerCharacters: string[]
 		): Disposable;
+
 		export function registerSignatureHelpProvider(
 			selector: DocumentSelector,
 			provider: SignatureHelpProvider,

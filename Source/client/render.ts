@@ -27,6 +27,7 @@ export function render({
 	// Replace this with your custom code!
 	const pre = document.createElement("pre");
 	pre.classList.add(style.json);
+
 	const code = document.createElement("code");
 	code.textContent = `mime type: ${mimeType}\n\n${JSON.stringify(data, null, 2)}`;
 	pre.appendChild(code);

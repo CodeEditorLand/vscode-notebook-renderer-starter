@@ -39,6 +39,7 @@ const rendered = new Map<string, NotebookOutputEventParams>();
 const renderTag = ({ element, mimeType, output }: NotebookOutputEventParams) =>
 	errorOverlay.wrap(element, () => {
 		element.innerHTML = "";
+
 		const node = document.createElement("div");
 		element.appendChild(node);
 
@@ -66,6 +67,7 @@ const getPublicPath = () => {
 	const currentDirname = (
 		document.currentScript as HTMLScriptElement
 	).src.replace(/[^/]+$/, "");
+
 	return new URL(
 		currentDirname + __webpack_relative_entrypoint_to_root__,
 	).toString();
