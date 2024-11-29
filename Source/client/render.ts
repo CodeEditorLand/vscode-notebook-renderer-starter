@@ -11,8 +11,11 @@ import * as style from "./style.css";
 
 interface IRenderInfo {
 	container: HTMLElement;
+
 	mimeType: string;
+
 	data: any;
+
 	notebookApi: NotebookRendererApi<unknown>;
 }
 
@@ -26,14 +29,19 @@ export function render({
 	// Format the JSON and insert it as <pre><code>{ ... }</code></pre>
 	// Replace this with your custom code!
 	const pre = document.createElement("pre");
+
 	pre.classList.add(style.json);
 
 	const code = document.createElement("code");
+
 	code.textContent = `mime type: ${mimeType}\n\n${JSON.stringify(data, null, 2)}`;
+
 	pre.appendChild(code);
+
 	container.appendChild(pre);
 
 	const button = document.createElement("button");
+
 	button.innerText = "Test";
 
 	button.addEventListener("click", () => {

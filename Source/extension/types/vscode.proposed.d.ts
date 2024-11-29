@@ -23,10 +23,13 @@ declare module "vscode" {
 		id: string;
 
 		getAccessToken(): Thenable<string>;
+
 		account: {
 			displayName: string;
+
 			id: string;
 		};
+
 		scopes: string[];
 	}
 
@@ -303,6 +306,7 @@ declare module "vscode" {
 
 	export class ResolvedAuthority {
 		readonly host: string;
+
 		readonly port: number;
 
 		constructor(host: string, port: number);
@@ -316,6 +320,7 @@ declare module "vscode" {
 		remoteAddress: { port: number; host: string };
 		// The desired local port. If this port can't be used, then another will be chosen.
 		localAddressPort?: number;
+
 		label?: string;
 	}
 
@@ -328,6 +333,7 @@ declare module "vscode" {
 	export interface Tunnel extends TunnelDescription {
 		// Implementers of Tunnel should fire onDidDispose when dispose is called.
 		onDidDispose: Event<void>;
+
 		dispose(): void;
 	}
 
@@ -353,6 +359,7 @@ declare module "vscode" {
 			message?: string,
 			handled?: boolean,
 		): RemoteAuthorityResolverError;
+
 		static TemporarilyNotAvailable(
 			message?: string,
 		): RemoteAuthorityResolverError;
@@ -408,6 +415,7 @@ declare module "vscode" {
 
 	export interface ResourceLabelFormatter {
 		scheme: string;
+
 		authority?: string;
 
 		formatting: ResourceLabelFormatting;
@@ -418,9 +426,13 @@ declare module "vscode" {
 		// TODO@isidorn
 		// eslint-disable-next-line vscode-dts-literal-or-types
 		separator: "/" | "\\" | "";
+
 		tildify?: boolean;
+
 		normalizeDriveLetter?: boolean;
+
 		workspaceSuffix?: string;
+
 		authorityPrefix?: string;
 	}
 
@@ -441,10 +453,15 @@ declare module "vscode" {
 
 	export interface WebviewEditorInset {
 		readonly editor: TextEditor;
+
 		readonly line: number;
+
 		readonly height: number;
+
 		readonly webview: Webview;
+
 		readonly onDidDispose: Event<void>;
+
 		dispose(): void;
 	}
 
@@ -466,7 +483,9 @@ declare module "vscode" {
 			resource: Uri,
 			options: { create: boolean },
 		): number | Thenable<number>;
+
 		close?(fd: number): void | Thenable<void>;
+
 		read?(
 			fd: number,
 			pos: number,
@@ -474,6 +493,7 @@ declare module "vscode" {
 			offset: number,
 			length: number,
 		): number | Thenable<number>;
+
 		write?(
 			fd: number,
 			pos: number,
@@ -901,8 +921,11 @@ declare module "vscode" {
 	 */
 	export interface LineChange {
 		readonly originalStartLineNumber: number;
+
 		readonly originalEndLineNumber: number;
+
 		readonly modifiedStartLineNumber: number;
+
 		readonly modifiedEndLineNumber: number;
 	}
 
@@ -934,14 +957,19 @@ declare module "vscode" {
 
 	export class Decoration {
 		letter?: string;
+
 		title?: string;
+
 		color?: ThemeColor;
+
 		priority?: number;
+
 		bubble?: boolean;
 	}
 
 	export interface DecorationProvider {
 		onDidChangeDecorations: Event<undefined | Uri | Uri[]>;
+
 		provideDecoration(
 			uri: Uri,
 			token: CancellationToken,
@@ -1472,6 +1500,7 @@ declare module "vscode" {
 
 	export interface CellStreamOutput {
 		outputKind: CellOutputKind.Text;
+
 		text: string;
 	}
 
@@ -1591,11 +1620,17 @@ declare module "vscode" {
 
 	export interface NotebookCell {
 		readonly notebook: NotebookDocument;
+
 		readonly uri: Uri;
+
 		readonly cellKind: CellKind;
+
 		readonly document: TextDocument;
+
 		language: string;
+
 		outputs: CellOutput[];
+
 		metadata: NotebookCellMetadata;
 	}
 
@@ -1640,27 +1675,41 @@ declare module "vscode" {
 
 	export interface NotebookDocument {
 		readonly uri: Uri;
+
 		readonly fileName: string;
+
 		readonly viewType: string;
+
 		readonly isDirty: boolean;
+
 		readonly cells: NotebookCell[];
+
 		languages: string[];
+
 		displayOrder?: GlobPattern[];
+
 		metadata: NotebookDocumentMetadata;
 	}
 
 	export interface NotebookConcatTextDocument extends TextDocument {
 		isClosed: boolean;
+
 		dispose(): void;
+
 		onDidChange: Event<void>;
+
 		version: number;
 
 		getText(): string;
 
 		getText(range: Range): string;
+
 		offsetAt(position: Position): number;
+
 		positionAt(offset: number): Position;
+
 		locationAt(positionOrRange: Position | Range): Location;
+
 		positionAt(location: Location): Position;
 	}
 
@@ -1673,6 +1722,7 @@ declare module "vscode" {
 			outputs: CellOutput[],
 			metadata: NotebookCellMetadata | undefined,
 		): void;
+
 		delete(index: number): void;
 	}
 
@@ -1736,7 +1786,9 @@ declare module "vscode" {
 
 	export interface NotebookRenderRequest {
 		output: CellDisplayOutput;
+
 		mimeType: string;
+
 		outputId: string;
 	}
 
@@ -1773,8 +1825,11 @@ declare module "vscode" {
 
 	export interface NotebookCellsChangeData {
 		readonly start: number;
+
 		readonly deletedCount: number;
+
 		readonly deletedItems: NotebookCell[];
+
 		readonly items: NotebookCell[];
 	}
 
@@ -1783,6 +1838,7 @@ declare module "vscode" {
 		 * The affected document.
 		 */
 		readonly document: NotebookDocument;
+
 		readonly changes: ReadonlyArray<NotebookCellsChangeData>;
 	}
 
@@ -1791,7 +1847,9 @@ declare module "vscode" {
 		 * The affected document.
 		 */
 		readonly document: NotebookDocument;
+
 		readonly index: number;
+
 		readonly newIndex: number;
 	}
 
@@ -1800,6 +1858,7 @@ declare module "vscode" {
 		 * The affected document.
 		 */
 		readonly document: NotebookDocument;
+
 		readonly cells: NotebookCell[];
 	}
 
@@ -1808,21 +1867,29 @@ declare module "vscode" {
 		 * The affected document.
 		 */
 		readonly document: NotebookDocument;
+
 		readonly cell: NotebookCell;
+
 		readonly language: string;
 	}
 
 	export interface NotebookCellData {
 		readonly cellKind: CellKind;
+
 		readonly source: string;
+
 		language: string;
+
 		outputs: CellOutput[];
+
 		metadata: NotebookCellMetadata;
 	}
 
 	export interface NotebookData {
 		readonly cells: NotebookCellData[];
+
 		readonly languages: string[];
+
 		readonly metadata: NotebookDocumentMetadata;
 	}
 
@@ -1927,20 +1994,25 @@ declare module "vscode" {
 			uri: Uri,
 			openContext: NotebookDocumentOpenContext,
 		): NotebookData | Promise<NotebookData>;
+
 		resolveNotebook(
 			document: NotebookDocument,
 			webview: NotebookCommunication,
 		): Promise<void>;
+
 		saveNotebook(
 			document: NotebookDocument,
 			cancellation: CancellationToken,
 		): Promise<void>;
+
 		saveNotebookAs(
 			targetResource: Uri,
 			document: NotebookDocument,
 			cancellation: CancellationToken,
 		): Promise<void>;
+
 		readonly onDidChangeNotebook: Event<NotebookDocumentContentChangeEvent>;
+
 		backupNotebook(
 			document: NotebookDocument,
 			context: NotebookDocumentBackupContext,
@@ -1952,12 +2024,15 @@ declare module "vscode" {
 
 	export interface NotebookKernel {
 		label: string;
+
 		preloads?: Uri[];
+
 		executeCell(
 			document: NotebookDocument,
 			cell: NotebookCell,
 			token: CancellationToken,
 		): Promise<void>;
+
 		executeAllCells(
 			document: NotebookDocument,
 			token: CancellationToken,
@@ -2261,6 +2336,7 @@ declare module "vscode" {
 	 */
 	export interface AccessibilityInformation {
 		label: string;
+
 		role?: string;
 	}
 
@@ -2284,6 +2360,7 @@ declare module "vscode" {
 
 	export interface TokenInformation {
 		type: StandardTokenType;
+
 		range: Range;
 	}
 

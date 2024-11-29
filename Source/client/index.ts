@@ -29,6 +29,7 @@ notebookApi.onWillDestroyOutput((evt) => {
 
 notebookApi.onDidCreateOutput((evt) => {
 	rendered.set(evt.outputId, evt);
+
 	renderTag(evt);
 });
 
@@ -41,6 +42,7 @@ const renderTag = ({ element, mimeType, output }: NotebookOutputEventParams) =>
 		element.innerHTML = "";
 
 		const node = document.createElement("div");
+
 		element.appendChild(node);
 
 		render({

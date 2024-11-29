@@ -41,6 +41,7 @@ export class SampleRenderer implements vscode.NotebookOutputRenderer {
 		{ output, mimeType }: vscode.NotebookRenderRequest,
 	): string {
 		const renderData = output.data[mimeType];
+
 		this.ensureDevTools(document);
 
 		// Here we output a script tag that calls a function we exposed in the
@@ -82,6 +83,7 @@ export class SampleRenderer implements vscode.NotebookOutputRenderer {
 			await vscode.commands.executeCommand(
 				"workbench.action.webview.openDeveloperTools",
 			);
+
 			this.hasOpenedDevTools.add(document);
 		}
 	}

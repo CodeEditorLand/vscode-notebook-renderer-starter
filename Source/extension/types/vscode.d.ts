@@ -339,6 +339,7 @@ declare module "vscode" {
 		 */
 		translate(change: {
 			lineDelta?: number;
+
 			characterDelta?: number;
 		}): Position;
 
@@ -1283,12 +1284,17 @@ declare module "vscode" {
 		 * interpreted (# and ?). See the following sample:
 		 * ```ts
 		const good = URI.file('/coding/c#/project1');
+
 		good.scheme === 'file';
+
 		good.path === '/coding/c#/project1';
+
 		good.fragment === '';
 
 		const bad = URI.parse('file://' + '/coding/c#/project1');
+
 		bad.scheme === 'file';
+
 		bad.path === '/coding/c'; // path is now broken
 		bad.fragment === '/project1';
 		```
@@ -1396,9 +1402,13 @@ declare module "vscode" {
 		 */
 		with(change: {
 			scheme?: string;
+
 			authority?: string;
+
 			path?: string;
+
 			query?: string;
+
 			fragment?: string;
 		}): Uri;
 
@@ -4797,8 +4807,11 @@ declare module "vscode" {
 			 */
 			docComment?: {
 				scope: string;
+
 				open: string;
+
 				lineStart: string;
+
 				close?: string;
 			};
 		};
@@ -4811,7 +4824,9 @@ declare module "vscode" {
 		__characterPairSupport?: {
 			autoClosingPairs: {
 				open: string;
+
 				close: string;
+
 				notIn?: string[];
 			}[];
 		};
@@ -4946,13 +4961,19 @@ declare module "vscode" {
 					key: string;
 
 					defaultValue?: T;
+
 					globalValue?: T;
+
 					workspaceValue?: T;
+
 					workspaceFolderValue?: T;
 
 					defaultLanguageValue?: T;
+
 					globalLanguageValue?: T;
+
 					workspaceLanguageValue?: T;
+
 					workspaceFolderLanguageValue?: T;
 
 					languageIds?: string[];
@@ -8672,7 +8693,9 @@ declare module "vscode" {
 			element: T,
 			options?: {
 				select?: boolean;
+
 				focus?: boolean;
+
 				expand?: boolean | number;
 			},
 		): Thenable<void>;
@@ -10048,6 +10071,7 @@ declare module "vscode" {
 		 */
 		export function openTextDocument(options?: {
 			language?: string;
+
 			content?: string;
 		}): Thenable<TextDocument>;
 
@@ -10241,6 +10265,7 @@ declare module "vscode" {
 			provider: FileSystemProvider,
 			options?: {
 				readonly isCaseSensitive?: boolean;
+
 				readonly isReadonly?: boolean;
 			},
 		): Disposable;
@@ -12104,6 +12129,7 @@ interface Thenable<T> {
 		onfulfilled?: (value: T) => TResult | Thenable<TResult>,
 		onrejected?: (reason: any) => TResult | Thenable<TResult>,
 	): Thenable<TResult>;
+
 	then<TResult>(
 		onfulfilled?: (value: T) => TResult | Thenable<TResult>,
 		onrejected?: (reason: any) => void,
