@@ -25,6 +25,7 @@
 			}
 		]
 	},
+	"dependencies": {},
 	"description": "Notebook renderer starter template",
 	"devDependencies": {
 		"@types/glob": "8.1.0",
@@ -38,7 +39,7 @@
 	"displayName": "vscode-notebook-renderer-starter",
 	"enableProposedApi": true,
 	"main": "./out/extension/extension.js",
-	"name": "vscode-notebook-renderer-starter",
+	"name": "@codeeditorland/notebook-renderer-starter",
 	"scripts": {
 		"compile": "npm run compile:extension && npm run compile:client",
 		"compile:client": "webpack --info-verbosity verbose --mode production",
