@@ -42,12 +42,12 @@
 	"dependencies": {},
 	"devDependencies": {
 		"@types/glob": "8.1.0",
-		"@types/node": "22.10.5",
+		"@types/node": "22.10.6",
 		"concurrently": "9.1.2",
 		"css-loader": "7.1.2",
-		"glob": "11.0.0",
+		"glob": "11.0.1",
 		"style-loader": "4.0.0",
-		"ts-loader": "9.5.1"
+		"ts-loader": "9.5.2"
 	},
 	"enableProposedApi": true
 }
